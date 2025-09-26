@@ -1,0 +1,8 @@
+.layout{
+    width: 100vw;
+    background-image: url('../../assets/logoLogin/LogoLogin.png');
+    background-repeat: no-repeat;
+    background-position-x: 05vw;
+    background-position-y: center;
+    background-size: 55%;
+}

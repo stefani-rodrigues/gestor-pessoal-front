@@ -1,0 +1,13 @@
+.body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+     width: 280px;
+     padding: 20px;
+    background-color: rgb(240, 231, 231);
+}
+
+.logo{
+    display:inline-block;
+    width: 100px;
+}
