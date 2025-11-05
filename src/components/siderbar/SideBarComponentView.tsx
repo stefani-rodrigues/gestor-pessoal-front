@@ -1,71 +1,89 @@
-import { LogOut } from "lucide-react";
+import { useState } from "react";
+import styles from "./SideBarComponent.module.css";
+import Logo from "../../assets/logo/logo.svg";
 import type { NavigationItem } from "../../types/login/sidebar/SideBarTypes";
 
-type props ={ 
-  handleItemClick(id: string): void
+type props = {
+  handleItemClick(id: string): void;
   activeItem: string;
-  navigationItems: NavigationItem[]
-}
- export default function SidebarComponentView({handleItemClick,navigationItems,activeItem}:props) {
-  
+  nav_items: NavigationItem[];
+};
+
+export default function SidebarComponentView({
+  handleItemClick,
+  nav_items,
+  activeItem,
+}: props) {
+  const [openMenu, setOpenMenu] = useState<string | null>(null); 
+  const toggleMenu = (id: string) => {
+    setOpenMenu((prev) => (prev === id ? null : id));
+  };
 
   return (
-      <div
-        className={`fixed top-0 left-0 h-full w-72 bg-white border-r border-slate-200 z-40 flex flex-col`}
-      >
-  
-        <div className="flex items-center p-5 border-b border-slate-200 bg-slate-50/60">
-          <div className="w-9 h-9 bg-blue-600 rounded-lg flex items-center justify-center shadow-sm">
-          </div>
-          <div className="flex flex-col ml-2.5">
-            <span className="font-semibold text-slate-800 text-base">Meu Gestor</span>
-          </div>
-        </div>
-        <nav className="flex-1 px-3 py-2 overflow-y-auto">
-          <ul className="space-y-0.5">
-            {
-              navigationItems.map((item) => {
-                const Icon = item.icon;
-                const isActive = activeItem === item.id;
+    <div
+      style={{ width: "250px", minHeight: "100vh" }}
+      className="border-end bg-light d-flex flex-column"
+    >
+      <div className="d-flex align-items-center p-4 border-bottom">
+        <img src={Logo} alt="Logo" className={styles.logoImg} />
+      </div>
 
-                return (
-                  <li key={item.id}>
-                    <button
-                      onClick={() => handleItemClick(item.id)}
-                      className={`
-                        w-full flex items-center space-x-2.5 px-3 py-2.5 rounded-md text-left transition-all duration-200 group
-                        ${isActive
-                          ? "bg-blue-50 text-blue-700"
-                          : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
-                        }
-                      `}
-                    >
-                      <div className="flex items-center justify-center min-w-[24px]">
-                        <Icon
-                          className={`h-4.5 w-4.5 flex-shrink-0 ${isActive ? "text-blue-600" : "text-slate-500 group-hover:text-slate-700"}`}
-                        />
-                      </div>
-                      <span className={`text-sm ${isActive ? "font-medium" : "font-normal"}`}>
-                        {item.name}
-                      </span>
-                    </button>
-                  </li>
-                );
-              })
-            }
-          </ul>
-        </nav>
+      <nav className="flex-grow-1 p-2 gap-px overflow-y-auto">
+        <ul className="nav nav-pills flex-column">
+          {nav_items.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeItem === item.id;
+            const isOpen = openMenu === item.id;
 
-    
-          <button
-            onClick={() => handleItemClick("login")}
-            className="w-full flex items-center justify-center space-x-2.5 px-3 py-2.5 rounded-md text-left text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-200"
-          >
-            <LogOut className="h-4.5 w-4.5 flex-shrink-0 text-red-500 group-hover:text-red-600" />
-            <span className="text-sm">Sair</span>
-          </button>
-        </div>
-     
+            return (
+              <li className="nav-item" key={item.id}>
+                <button
+                  onClick={() =>
+                    item.children ? toggleMenu(item.id) : handleItemClick(item.id)
+                  }
+                  className={`nav-link w-100 d-flex align-items-center justify-content-between text-start ${
+                    isActive ? styles.linkAtivo : styles.linkInativo
+                  }`}
+                >
+                  <div className="d-flex align-items-center gap-2">
+                    {Icon && <Icon />}
+                    <span>{item.name}</span>
+                  </div>
+                  {item.children && (
+                    <span className="ms-auto">
+                      {isOpen ? "" : ""}
+                    </span>
+                  )}
+                </button>
+
+                {item.children && isOpen && (
+                  <ul className="nav flex-column ms-4 mt-1">
+                    {item.children.map((subItem) => {
+                      const SubIcon = subItem.icon;
+                      const isSubActive = activeItem === subItem.id;
+                      return (
+                        <li className="nav-item" key={subItem.id}>
+                          <button
+                            onClick={() => handleItemClick(subItem.id)}
+                            className={`nav-link w-100 d-flex align-items-center gap-2 text-start ${
+                              isSubActive
+                                ? styles.linkAtivo
+                                : styles.linkInativo
+                            }`}
+                          >
+                            {SubIcon && <SubIcon />}
+                            <span>{subItem.name}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </div>
   );
 }
-

@@ -1,0 +1,32 @@
+.buton-add {
+  background-color: #6a4c93 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.buton-add:hover {
+  background-color: #5b4081 !important;
+  color: #fff !important;
+}
+
+.buton-salvar {
+  background-color: #63b960 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.buton-salvar:hover {
+  background-color: #529e4f !important;
+  color: #fff !important;
+}
+
+.buton-cancelar {
+  background-color: #fc3d58 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+.buton-cancelar:hover {
+  background-color: #d9334b !important;
+  color: #fff !important;
+}

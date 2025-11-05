@@ -10,6 +10,12 @@ export interface propsGet extends props {
   config?: AxiosRequestConfig<unknown> | undefined
 }
 
+export interface propsDelete extends props {
+  config?: AxiosRequestConfig<unknown> | undefined
+  tituloCarregamento?: string;
+  tituloSucesso?: string;
+}
+
 
 export interface propsCompleto extends props {
     body?: unknown;
@@ -27,12 +33,14 @@ export async function post<T = unknown>({
     api.post<T>(url, body)
     .then(res => res.data)
     .catch((error) => {
-      throw new Error(error.response.data);
+      throw new Error(error.response.data.erro);
     }),
     {
       loading: tituloCarregamento,
       success: tituloSucesso,
-      error: (err) => err.message,
+      error: (err) => {
+        return err.message;
+      },
     }
   );
 }
@@ -47,7 +55,7 @@ export async function put<T = unknown>({
     api.put<T>(url, body)
     .then(res => res.data)
     .catch((error) => {
-      throw new Error(error.response.data);
+      throw new Error(error.response.data.erro);
     }),
     {
       loading: tituloCarregamento,
@@ -66,4 +74,23 @@ export async function get<T = unknown>({ url }:props) {
     toast.error("Erro ao buscar dados");
     throw err;
   }
+}
+
+export async function _delete<T = unknown>({
+    url,
+    tituloCarregamento = 'Removendo...',
+    tituloSucesso = "Removido com sucesso!"
+}:propsDelete) {
+  return toast.promise(
+    api.delete<T>(url)
+    .then(res => res.data)
+    .catch((error) => {
+      throw new Error(error.response.data.erro);
+    }),
+    {
+      loading: tituloCarregamento,
+      success: tituloSucesso,
+      error: (err) => err.message,
+    }
+  );
 }

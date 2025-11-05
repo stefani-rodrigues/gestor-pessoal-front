@@ -1,13 +1,21 @@
-.body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-     width: 280px;
-     padding: 20px;
-    background-color: rgb(240, 231, 231);
+
+.logoImg {
+  width: 150px; 
+  height: auto; 
 }
 
-.logo{
-    display:inline-block;
-    width: 100px;
+
+.linkAtivo {
+  background-color: #694c931a  !important;
+  color: #6b21a8 !important;
+  font-weight: 500 !important;
+}
+
+
+.linkInativo{
+  color: #555 !important; 
+}
+
+.linkInativo:hover {
+  background-color: #f9f9f9 !important;
 }

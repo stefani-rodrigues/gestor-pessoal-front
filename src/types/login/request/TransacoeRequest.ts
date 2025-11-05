@@ -1,8 +1,8 @@
-import type { TipoTransacao } from "../../../utis/api/enum/transacao/TipoTransacao";
+import type { TipoTransacaoEnum } from "../../../utis/api/enum/transacao/TipoTransacaoEnum";
 
 export type TransacaoRequest = {
   descricao:string;
   valor: number;
   data: string;
-  tipo:TipoTransacao;
+  tipo:TipoTransacaoEnum;
 }

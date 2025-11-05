@@ -1,25 +1,29 @@
+import { MdEdit } from "react-icons/md";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import type { TransacaoResponse } from "../../../types/login/response/TransacaoResponse";
 
-import type { TransacaoRequest } from "../../../types/login/request/TransacoeRequest";
 
 
 type Props = {
-  transacoes: TransacaoRequest[];
+  transacoes: TransacaoResponse[];
+  EditarTransacao:(idTransacao:number )=>void;
+  DeletarTransacao:(idTransacao: number)=>void;
 };
 
 
-export default function TabelaComponentView({ transacoes }: Props) {
+export default function TabelaComponentView({ transacoes,DeletarTransacao,EditarTransacao }: Props) {
   return (
-    <div className="card shadow-sm">
+    <div className="card ">
       <div className="card-body">
-        <h5 className="card-title">Histórico de Transações</h5>
-        <div className="table-responsive">
-          <table className="table table-striped table-hover table-sm">
+        <div className="table-responsive" >
+          <table className="table table-striped table-hover table-fixed ">
             <thead>
               <tr>
                 <th>Descrição</th>
                 <th>Data</th>
                 <th>Tipo</th>
                 <th>Valor</th>
+                 <th></th>
               </tr>
             </thead>
             <tbody>
@@ -41,14 +45,25 @@ export default function TabelaComponentView({ transacoes }: Props) {
                         currency: 'BRL',
                       })}
                     </td>
+                    <td>
+                      <button  className="border-0 bg-transparent" 
+                      onClick={()=>{EditarTransacao(transacao.id) }}
+                      >
+                        <MdEdit size={"20px"}/>
+                        </button> 
+                    </td>
+                    
+                    <td>
+                      <button className="border-0 bg-transparent" onClick={() => {DeletarTransacao(transacao.id)}}> <RiDeleteBin5Line  size={"20px"}/></button> 
+                    
+                    </td>
                   </tr>
                 ))
               ) : (
-           
                 <tr>
                   
-                  <td colSpan={4} className="text-center">
-                    Nenhuma transação encontrada :(
+                  <td colSpan={5} className="text-center">
+                    Nenhuma transação encontrada.
                   </td>
                 </tr>
               )}

@@ -5,12 +5,15 @@ import LoginPagesView from "../login/LoginPagesView";
 
 
 
+
 export default function LoginPages() {
   const [formData, setFormData] = useState<LoginRequest>({
     email: "",
     senha: "",
   });
   const loginApi = new LoginApiService();
+
+
 
  
 

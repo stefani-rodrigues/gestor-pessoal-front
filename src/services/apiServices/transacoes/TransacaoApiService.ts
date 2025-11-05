@@ -23,4 +23,32 @@ export default class TransacaoApiService extends RequisicoesBasesService {
         
         return response;
     }
+     async BuscarTrasacoesPorIdAsync(id:number) : Promise<TransacaoResponse> {
+        const response = await this.get<TransacaoResponse>({
+          url: `${this.controller}/${id}`,
+          
+        });
+        
+        return response;
+    }
+
+
+    async AtualizarTransacaoPorIdAsyn(id:number, request:TransacaoRequest) : Promise<TransacaoResponse>{
+      const response = await this.put<TransacaoResponse>({
+       url: `${this.controller}/${id}`,
+       body: request
+      });
+      return response;
+    }
+
+    
+
+    async RemoverTransacaoPorIdAsyn(id:number) : Promise<TransacaoResponse>{
+      const response = await this.delete<TransacaoResponse>({
+       url: `${this.controller}/${id}`,
+      });
+      return response;
+    }
+
+    
   }
