@@ -1,0 +1,21 @@
+.cardCustom {
+  max-width: 600px !important;
+  overflow: hidden !important;
+  background-color: #f9fafc !important;
+  margin-left: 0 !important;
+}
+
+.cardHeader {
+  background-color: #e7e7e7 !important;
+  color: #500457 !important;
+  font-size: 1.1rem !important;
+  border-bottom: none !important;
+  padding: 12px 20px !important;
+}
+
+
+.cardCustom:hover {
+  transform: translateY(-3px) !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08) !important;
+}

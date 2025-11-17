@@ -8,6 +8,7 @@ interface props {
 
 export interface propsGet extends props {
   config?: AxiosRequestConfig<unknown> | undefined
+  
 }
 
 export interface propsDelete extends props {

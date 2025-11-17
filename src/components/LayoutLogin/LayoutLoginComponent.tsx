@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import styles from "../LayoutLogin/LayoutLoginComponent.module.css"
+import styles from "./LayoutLoginComponent.module.css"
 
 function LayoutLogin() {
   

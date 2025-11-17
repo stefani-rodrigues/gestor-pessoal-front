@@ -14,7 +14,7 @@ export default function CategoriaPage(){
         id:0
     }
     );
-
+    const [mostrar, setMostrar] = useState(false);
     const categoriaApiService = new CategoriaApiService();
     
     async function ListarCategorias() {
@@ -27,8 +27,13 @@ export default function CategoriaPage(){
 
     useEffect(() =>{
         ListarCategorias();
-    }, [])
+    }, [mostrar])
 
+    function AbrirEFecharModal() {
+    setMostrar((prev) => !prev);
+    }
+
+    
    function EditarForm(event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
   const { name, value } = event.target;
 
@@ -53,7 +58,8 @@ export default function CategoriaPage(){
     
     async function EditarCategoria(IdCategoria:number) {
         await categoriaApiService.BuscarCategoriaPorIdAsync(IdCategoria);
-        
+
+        AbrirEFecharModal();
     }
    
 

@@ -1,4 +1,4 @@
-import Usuario from "../pages/configuracao/perfil/UsuarioPages"
+import Usuario from "../pages/perfil/UsuarioPages"
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit'
 
 

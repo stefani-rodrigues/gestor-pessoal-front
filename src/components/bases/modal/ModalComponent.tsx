@@ -6,7 +6,7 @@ type props ={
     titulo:string;
     fechar:()=> void;
     salvar?:() => void;
-    children: ReactNode;
+    children?: ReactNode;
    
 }
 

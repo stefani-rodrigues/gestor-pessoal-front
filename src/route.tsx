@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import HomePages from "./pages/home/HomePagesView";
+import HomePages from "./pages/home/HomePages";
 import LoginPages from "./pages/login/LoginPages";
 import CadastrasePages from "./pages/login/cadastro/CadastrasePages";
 import TransacoePage from "./pages/transacoe/TransacoePage";

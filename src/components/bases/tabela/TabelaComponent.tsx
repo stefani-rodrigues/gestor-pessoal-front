@@ -4,14 +4,19 @@ import type { TransacaoResponse } from "../../../types/login/response/TransacaoR
 import TabelaComponentView from "./TabelaComponentView"
 
 type Props = {
-    mostrar:boolean;
+    mostrar?:boolean;
     transacoes: TransacaoResponse[];
-    onAtualizar: () => void
+    onAtualizar?: () => void
+    AbrirEFecharModal?: () => void;
+    exibirBotoesDeAcoes?: boolean;
+    exibirTotalizadores?:boolean;
 };
 
 export default function TabelaComponent({
     transacoes,
-    onAtualizar,
+    onAtualizar = () => {} ,
+    exibirBotoesDeAcoes = true,
+    exibirTotalizadores = true,
 }: Props){
     
     const transacaoApiService = new TransacaoApiService();
@@ -35,6 +40,8 @@ export default function TabelaComponent({
             EditarTransacao={EditarTransacao}
             DeletarTransacao={DeletarTransacao}
             transacoes={transacoes}
+            exibirBotoesDeAcoes={exibirBotoesDeAcoes}
+            exibirTotalizadores={exibirTotalizadores}
         />    
     )
 }

@@ -35,7 +35,11 @@ export function AuthProvider({children}:AuthProviderProps){
     }
 
     async function fazerLogin(email: string,senha:string) {
-        const retorno = await loginApi.LoginAsync(formData);
+        await loginApi.LoginAsync({
+          email: email,
+          senha: senha
+        });
+        
     } 
   
     function deslogar() {

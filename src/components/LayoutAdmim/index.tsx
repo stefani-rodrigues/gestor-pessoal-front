@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Sidebar } from "../Siderbar/SideBarComponent";
+import { Sidebar } from "../siderbar/SideBarComponent";
 import Header from "../header/HeaderComponetView";
 
   export default function LayoutAdmin() {
