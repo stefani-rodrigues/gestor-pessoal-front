@@ -1,5 +1,5 @@
-import type { CategoriaRequest } from "../../../types/login/request/CategoriaRequest";
-import type { CategoriaResponse } from "../../../types/login/response/CategoriaResponse";
+import type { CategoriaRequest } from "../../../types/categoria/requests/CategoriaRequest";
+import type { CategoriaResponse } from "../../../types/categoria/responses/CategoriaResponse";
 import { RequisicoesBasesService } from "../bases/RequisicoesBasesService";
 
 export default class CategoriaApiService extends RequisicoesBasesService {

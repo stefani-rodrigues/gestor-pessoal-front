@@ -1,21 +1,23 @@
 import CardComValorComponet from "../../components/bases/card/CardComValorComponent";
-
-import TabelaComponent from "../../components/bases/tabela/TabelaComponent";
-import type { TransacaoResponse } from "../../types/login/response/TransacaoResponse";
+import TabelaTransacoesRecentes from "../../components/transacao/tabelas/TabelaTransacoesRecentes";
+import type { TransacaoResponse } from "../../types/transacoes/responses/TransacaoResponse";
+import type { ListarTrasacoesDaSemanaResponse } from "../../types/transacoes/responses/ListarTrasacoesDaSemanaResponse";
 import GraficoComponent from "./grafico/GraficoComponet";
 
 type Props = {
   receita: number;
   despesa: number;
-  saldo: number;
-  transacoes: TransacaoResponse[]
+  saldo: number; 
+  listaTransacoesRecentes: ListarTrasacoesDaSemanaResponse[]
+  listaTransacoesDoMes: TransacaoResponse[];
+  nomeUsuario:string
 };
-export default function HomePagesView({despesa,receita,saldo, transacoes}:Props) {
-
+export default function HomePagesView({despesa,receita,saldo, listaTransacoesRecentes,nomeUsuario, listaTransacoesDoMes}:Props) {
+  
   return (
  
     <div className=" mb-1">
-      <h4 className="fw-bold">Bem-vindo Usuário</h4>
+      <h4 className="fw-bold">Bem-vindo {nomeUsuario}</h4>
       <p className="text-muted">Meu Gestor Pessoal</p>
       <div className="mb-4">
         <span className="fs-4 fw-semibold mb-2">Resumo financeiro do mês</span>
@@ -31,10 +33,8 @@ export default function HomePagesView({despesa,receita,saldo, transacoes}:Props)
           <span className="fs-4 fw-semibold mb-2 d-block">Transações recentes</span>
           <div className="card" >
             <div className="card-body ">
-              <TabelaComponent 
-                transacoes={transacoes}
-                exibirBotoesDeAcoes={false}
-                exibirTotalizadores={false}
+              <TabelaTransacoesRecentes 
+                listaTransacoesRecentes={listaTransacoesRecentes}
               />
             </div>
           </div>
@@ -43,7 +43,7 @@ export default function HomePagesView({despesa,receita,saldo, transacoes}:Props)
           <span className="fs-4 fw-semibold mb-2 d-block">Despesas</span>
           <div className="card">
             <div className="card-body">
-              <GraficoComponent dados={transacoes}/>
+              <GraficoComponent dados={listaTransacoesDoMes}/>
             </div>
           </div>
         </div>

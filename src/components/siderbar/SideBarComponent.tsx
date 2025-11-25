@@ -1,4 +1,4 @@
-import { Home, FileText, TargetIcon, SettingsIcon, TagIcon } from "lucide-react";
+import { Home, FileText, SettingsIcon, TagIcon } from "lucide-react";
 import type { NavigationItem } from "../../types/login/sidebar/SideBarTypes";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ import SidebarComponentView from "./SideBarComponentView";
 const nav_items: NavigationItem[] = [
   { id: "home", name: "Visão geral", icon: Home, href: "/" },
   { id: "transacoes", name: "Transações", icon: FileText, href: "/transacoes" },
-  { id: "metas", name: "Metas", icon: TargetIcon, href: "/metas" },
+ // { id: "metas", name: "Metas", icon: TargetIcon, href: "/metas" },
   {
     id:"configuracao",name:"Configuração",icon:SettingsIcon,children:[
       {id:"categoria",name:"Categoria",icon:TagIcon,href:"/categoria"},

@@ -1,6 +1,6 @@
 import type { ChangeEvent } from "react";
-import type { TransacaoRequest } from "../../../types/login/request/TransacoeRequest";
-import type { CategoriaResponse } from "../../../types/login/response/CategoriaResponse";
+import type { TransacaoRequest } from "../../../types/transacoes/requests/TransacoeRequest";
+import type { CategoriaResponse } from "../../../types/categoria/responses/CategoriaResponse";
 import ModalComponent from "../../bases/modal/ModalComponent";
 import { TipoTransacaoEnum } from "../../../utis/api/enum/transacao/TipoTransacaoEnum";
 
@@ -12,7 +12,7 @@ type Props = {
   mostrar: boolean;
   fechar: () => void;
   categorias: CategoriaResponse[];
-
+  modoEdicao: boolean;
 };
 
 export default function ModalTransacaoView({
@@ -22,11 +22,11 @@ export default function ModalTransacaoView({
   SalvarTransacao,
   fechar,
   categorias,
-
+  modoEdicao
 }: Props) {
   return (
     <ModalComponent
-      titulo="Adicionar Transação"
+      titulo={`${modoEdicao ? "Alterar Transação" : "Adicionar Transação"}`}
       mostrar={mostrar}
       fechar={fechar}
       salvar={SalvarTransacao}

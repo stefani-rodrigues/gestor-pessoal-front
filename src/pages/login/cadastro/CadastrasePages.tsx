@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { UsuarioRequest } from "../../../types/login/request/UsuarioRequest";
+import type { UsuarioRequest } from "../../../types/usuarios/requests/UsuarioRequest";
 import CadastrasePagesView from "./CadastrasePagesView";
 import UsuarioApiService from "../../../services/apiServices/usuarios/usuarioApiService";
 
@@ -10,6 +10,7 @@ export default function CadastrasePages() {
       nome: "",
       email: "",
       senha: "",
+      CPF:""
     });
 
   const usuarioApiService = new UsuarioApiService();
@@ -25,7 +26,14 @@ export default function CadastrasePages() {
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    await usuarioApiService.CriarNovoUsuarioAsync(formData);
+   await usuarioApiService.CriarNovoUsuarioAsync(formData);
+     
+   setFormData({
+    CPF:"",
+    email:"",
+    nome:"",
+    senha:""
+   })
   }
 
   return (

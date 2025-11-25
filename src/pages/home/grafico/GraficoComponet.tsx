@@ -1,5 +1,4 @@
-
-import type { TransacaoResponse } from "../../../types/login/response/TransacaoResponse";
+import type { TransacaoResponse } from "../../../types/transacoes/responses/TransacaoResponse";
 import GraficoComponentView from "./GraficoComponetView";
 
 type CategoriaItem = {
@@ -9,7 +8,7 @@ type CategoriaItem = {
 
 export default function GraficoComponent({ dados }: { dados: TransacaoResponse[] }) {
 
-    // Agrupa por categoriaNome e soma os valores
+
     function agruparCategorias(dados: TransacaoResponse[]) {
         const mapa = new Map<string, number>();
 
@@ -22,7 +21,6 @@ export default function GraficoComponent({ dados }: { dados: TransacaoResponse[]
         return Array.from(mapa, ([categoria, total]) => ({ categoria, total }));
     }
 
-    // Calcula porcentagem de cada categoria
     function calcularPorcentagens(itens: CategoriaItem[]) {
         const totalGeral = itens.reduce((soma, item) => soma + item.total, 0);
 
@@ -32,7 +30,7 @@ export default function GraficoComponent({ dados }: { dados: TransacaoResponse[]
         }));
     }
 
-    // Gera cor automática se não houver cor definida
+   
     function gerarCor(categoria: string) {
         let hash = 0;
         for (let i = 0; i < categoria.length; i++) {

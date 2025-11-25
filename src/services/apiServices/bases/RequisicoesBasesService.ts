@@ -2,7 +2,7 @@ import { get, post, put, _delete, type propsCompleto, type propsGet, type propsD
 
 
 export class RequisicoesBasesService {
-  protected readonly post: <T = unknown>({ url, body, tituloCarregamento, tituloSucesso }: propsCompleto) => Promise<T>;
+  protected readonly post: <T = unknown>({ config,url, body, tituloCarregamento, tituloSucesso }: propsCompleto) => Promise<T>;
   protected readonly put: <T = unknown>({ url, body, tituloCarregamento, tituloSucesso }: propsCompleto) => Promise<T>;
   protected readonly get: <T = unknown>({ url, }: propsGet) => Promise<T>;
   protected readonly delete: <T = unknown>({ url, tituloCarregamento, tituloSucesso, config }: propsDelete) => Promise<T>;

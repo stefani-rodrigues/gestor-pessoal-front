@@ -2,21 +2,35 @@ import { CircleFadingPlusIcon } from "lucide-react";
 import BotaoComponent from "../../components/bases/botao/BotaoComponet";
 import MenuMesComponent from "../../components/menuMesSelect/MenuMesComponent";
 import ModalTransacao from "../../components/transacao/modal/ModalTransacao";
-import TabelaComponent from "../../components/bases/tabela/TabelaComponent";
-import type { TransacaoResponse } from "../../types/login/response/TransacaoResponse";
+import type { Transacao } from "../../redux/transacao/transacoesSlice";
+import TabelaTransacoes from "../../components/transacao/tabelas/TabelaTransacoes";
 
 
 type Props = {
   mostrar: boolean;
-  AbrirEFecharModal: () => void;
-  transacoes:TransacaoResponse[];
-  onSalvou: () => void
-   onAtualizou: () => void
-   filtroMes:(data:Date)=>void
+  transacoes:Transacao[];
+  itemEmEdicao: Transacao | null;
+  OnSalvou: () => void
+  OnAtualizou: () => void
+  filtroMes:(data:Date)=>void
+  AbrirParaNovo: () => void;      
+  OnClickEditar: (idTransacao: number) => void;
+  OnClickDeletar:(idTransacao:number) =>  void;
+  FecharModal: () => void;
 
 };
 
-export default function TransacoePageView({AbrirEFecharModal,mostrar, transacoes,onSalvou,onAtualizou,filtroMes}: Props) {
+export default function TransacoePageView({
+  mostrar, 
+  transacoes,
+  AbrirParaNovo,
+  FecharModal,
+  filtroMes,
+  OnSalvou,
+  OnClickDeletar,
+  OnClickEditar,
+  itemEmEdicao
+}: Props) {
   return (
     <div >
         <BotaoComponent
@@ -24,21 +38,22 @@ export default function TransacoePageView({AbrirEFecharModal,mostrar, transacoes
             titulo="Nova Transação"
             icone={<CircleFadingPlusIcon />}
             variante="add"
-            onClick={AbrirEFecharModal}
+            onClick={AbrirParaNovo}
         />
 
         <ModalTransacao
-            onSalvar={onSalvou}
-            fechar={AbrirEFecharModal}
+            OnSalvar={OnSalvou}
+            fechar={FecharModal}
             mostrar={mostrar}
+            transacaoParaEditar={itemEmEdicao}
         />
         <MenuMesComponent onChange={filtroMes} />
 
-        <TabelaComponent
-        onAtualizar={onAtualizou}
-        AbrirEFecharModal={AbrirEFecharModal}
-        mostrar={mostrar}
-        transacoes={transacoes}/>
+        <TabelaTransacoes
+          transacoes={transacoes}
+          OnClickDeletar={OnClickDeletar}
+          OnClickEditar={OnClickEditar}
+        />
     </div>
   );
 }

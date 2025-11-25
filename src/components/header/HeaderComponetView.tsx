@@ -11,7 +11,7 @@ export default function HeaderComponentView() {
             id="basic-nav-dropdown"
             align="end" 
           >
-            <NavDropdown.Item as={Link} to="/perfil">
+            <NavDropdown.Item as={Link} to="/usuario">
               Perfil
             </NavDropdown.Item>
             <NavDropdown.Divider />

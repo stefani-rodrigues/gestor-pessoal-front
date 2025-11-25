@@ -1,10 +1,12 @@
-import type { TransacaoRequest } from "../../../types/login/request/TransacoeRequest";
-import type { SomaPorTipoResponse, TransacaoResponse } from "../../../types/login/response/TransacaoResponse";
+import type { TransacaoRequest } from "../../../types/transacoes/requests/TransacoeRequest";
+import type { SomaPorTipoResponse, TransacaoResponse } from "../../../types/transacoes/responses/TransacaoResponse";
+import type { ListarTrasacoesDaSemanaResponse } from "../../../types/transacoes/responses/ListarTrasacoesDaSemanaResponse";
+import type { TipoTransacaoEnum } from "../../../utis/api/enum/transacao/TipoTransacaoEnum";
 import { RequisicoesBasesService } from "../bases/RequisicoesBasesService";
 
 export default class TransacaoApiService extends RequisicoesBasesService {
   constructor() {
-    super("transicoes"); // Define a controller
+    super("transacoes"); // Define a controller
   }
   
   async CriarNovaTrasacaoAsync(request:TransacaoRequest) : Promise<TransacaoResponse> {
@@ -16,9 +18,9 @@ export default class TransacaoApiService extends RequisicoesBasesService {
     return response;
   }
   
-  async ListarTrasacoesAsync(mes?: number,ano?:number): Promise<TransacaoResponse[]> {
+  async ListarTrasacoesAsync(mes?: number,ano?:number, tipo?: TipoTransacaoEnum): Promise<TransacaoResponse[]> {
     const url = mes
-      ? `${this.controller}?mes=${mes}&ano=${ano}`
+      ? `${this.controller}?mes=${mes}&ano=${ano}${tipo ?`&tipo=${tipo}` : ""}`
       : `${this.controller}`;
 
     const response = await this.get<TransacaoResponse[]>({
@@ -28,8 +30,8 @@ export default class TransacaoApiService extends RequisicoesBasesService {
     return response;
 }
 
-  async ListarTrasacoesRecentesPorSemanaAsync(): Promise<TransacaoResponse[]> {
-      const response = await this.get<TransacaoResponse[]>({
+  async ListarTrasacoesRecentesPorSemanaAsync(): Promise<ListarTrasacoesDaSemanaResponse[]> {
+      const response = await this.get<ListarTrasacoesDaSemanaResponse[]>({
         url: `${this.controller}/semana`
       });
 
